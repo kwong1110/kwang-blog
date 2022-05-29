@@ -1,4 +1,4 @@
-import type { GatsbyConfig } from 'gatsby'
+import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -19,7 +19,7 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/icon.png',
+        icon: 'src/images/favicon.png',
       },
     },
     'gatsby-transformer-remark',
@@ -43,6 +43,6 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
   ],
-}
+};
 
-export default config
+export default config;
