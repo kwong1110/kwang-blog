@@ -1,8 +1,15 @@
-import * as React from 'react'
+import { GatsbyImage } from 'gatsby-plugin-image';
+import * as React from 'react';
+import { useLogo } from '../graphql/use-logo';
 
-// markup
 const IndexPage = () => {
-  return <div>블로그 TEST</div>
-}
+  const logo = useLogo();
 
-export default IndexPage
+  return (
+    <div>
+      <GatsbyImage image={logo} alt="logo" />
+    </div>
+  );
+};
+
+export default IndexPage;
