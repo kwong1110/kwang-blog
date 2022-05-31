@@ -12,7 +12,8 @@
     "paths": {
       "components/*": ["./components/*"],
       "graphql/*": ["./graphql/*"],
-      "templates/*": ["./templates/*"]
+      "templates/*": ["./templates/*"],
+      "styles/*": ["./styles/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     "esModuleInterop": true,

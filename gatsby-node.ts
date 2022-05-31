@@ -19,6 +19,7 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
         components: path.resolve(__dirname, 'src/components'),
         graphql: path.resolve(__dirname, 'src/graphql'),
         templates: path.resolve(__dirname, 'src/templates'),
+        styles: path.resolve(__dirname, 'src/styles'),
       },
     },
   });
