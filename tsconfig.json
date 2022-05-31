@@ -11,8 +11,8 @@
     "baseUrl": "./src",
     "paths": {
       "components/*": ["./components/*"],
-      "utils/*": ["./utils/*"],
-      "hooks/*": ["./hooks/*"]
+      "graphql/*": ["./graphql/*"],
+      "templates/*": ["./templates/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     "esModuleInterop": true,
@@ -20,6 +20,6 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*.tsx"],
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }
