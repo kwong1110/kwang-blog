@@ -1,14 +1,11 @@
-import { GatsbyImage } from 'gatsby-plugin-image';
-import { useLogo } from 'graphql/use-logo';
+import Layout from 'components/layout/Layout';
 import * as React from 'react';
 
 const IndexPage = () => {
-  const logo = useLogo();
-
   return (
-    <div>
-      <GatsbyImage image={logo} alt="logo" />
-    </div>
+    <Layout>
+      <div>index입니다.</div>
+    </Layout>
   );
 };
 
