@@ -1,12 +1,7 @@
-import Layout from 'components/layout/Layout';
-import * as React from 'react';
+import React from 'react';
 
 const IndexPage = () => {
-  return (
-    <Layout>
-      <div>index입니다.</div>
-    </Layout>
-  );
+  return <div>index입니다.</div>;
 };
 
 export default IndexPage;
