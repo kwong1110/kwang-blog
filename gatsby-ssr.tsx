@@ -5,6 +5,16 @@
 
 import React from 'react';
 import Layout from './src/components/layout/Layout';
+import GlobalStyle from './src/styles/GlobalStyle';
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <>
+      <GlobalStyle />
+      <>{element}</>
+    </>
+  );
+};
 
 export const wrapPageElement = ({ element, props }) => {
   return <Layout {...props}>{element}</Layout>;
