@@ -4,6 +4,7 @@
     "module": "esnext",
     "allowJs": true,
     "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

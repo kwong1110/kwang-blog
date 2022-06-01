@@ -1,6 +1,5 @@
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { useLogo } from 'graphql/use-logo';
-import React from 'react';
 
 const Header = () => {
   const logo = useLogo();
