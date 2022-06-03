@@ -1,13 +1,13 @@
-import { useStaticQuery, graphql } from 'gatsby'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { useStaticQuery, graphql } from 'gatsby';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 type LogoProps = {
   logo: {
     childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
-    }
-  }
-}
+      gatsbyImageData: IGatsbyImageData;
+    };
+  };
+};
 
 export const useLogo = () => {
   const { logo } = useStaticQuery<LogoProps>(
@@ -20,6 +20,6 @@ export const useLogo = () => {
         }
       }
     `,
-  )
-  return logo.childImageSharp.gatsbyImageData
-}
+  );
+  return logo.childImageSharp.gatsbyImageData;
+};
