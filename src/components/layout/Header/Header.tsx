@@ -6,8 +6,11 @@ const Header = () => {
 
   return (
     <div style={{ borderBottom: '1px solid black' }}>
-      <GatsbyImage style={{ width: '90px' }} image={logo} alt="logo" />
-      Header 영역
+      <a href="/">
+        <GatsbyImage style={{ width: '90px' }} image={logo} alt="logo" />
+      </a>
+      <a href="/about">about</a>
+      <a href="/blog">blog</a>
     </div>
   );
 };
