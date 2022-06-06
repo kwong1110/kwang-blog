@@ -50,6 +50,7 @@ const config: GatsbyConfig = {
       },
       __key: 'contents',
     },
+    'gatsby-plugin-mdx',
   ],
 };
 

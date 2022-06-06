@@ -18,10 +18,13 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@mdx-js/mdx": "v1",
+    "@mdx-js/react": "v1",
     "gatsby": "^4.12.1",
     "gatsby-plugin-emotion": "^7.12.1",
     "gatsby-plugin-image": "^2.12.1",
     "gatsby-plugin-manifest": "^4.12.1",
+    "gatsby-plugin-mdx": "^3.15.2",
     "gatsby-plugin-react-helmet": "^5.12.1",
     "gatsby-plugin-sharp": "^4.12.1",
     "gatsby-plugin-typescript": "^4.15.0",
