@@ -6,6 +6,7 @@
 import React from 'react';
 import Layout from './src/components/layout/Layout';
 import GlobalStyle from './src/styles/GlobalStyle';
+import 'prismjs/themes/prism-tomorrow.css';
 
 export const wrapRootElement = ({ element }) => {
   return (
