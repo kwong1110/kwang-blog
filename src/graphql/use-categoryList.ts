@@ -2,7 +2,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 type CategoryListProps = {
   categoryList: {
-    group: { fieldValue: string[]; totalCount: number }[];
+    group: ICategory[];
   };
 };
 
@@ -11,7 +11,7 @@ export const useCategoryList = () => {
     graphql`
       query {
         categoryList: allMdx(limit: 100) {
-          group(field: frontmatter___categories) {
+          group(field: frontmatter___category) {
             fieldValue
             totalCount
           }
