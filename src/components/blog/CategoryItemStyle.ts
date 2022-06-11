@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 
-const PostItemStyle = css`
+const CategoryItemStyle = css`
   padding: 10px 20px;
   border: 1px solid black;
 
   cursor: pointer;
 `;
 
-export { PostItemStyle };
+export { CategoryItemStyle };
