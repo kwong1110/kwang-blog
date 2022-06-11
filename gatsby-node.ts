@@ -5,8 +5,8 @@
  */
 
 // You can delete this file if you're not using it
-
-const path = require('path');
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
 
 // Setup Import Alias
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
@@ -65,4 +65,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
+};
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode });
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    });
+  }
 };
