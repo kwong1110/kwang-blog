@@ -28,7 +28,11 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
 // post pagination
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const result = await graphql(
+
+  const postsPerPage = 2;
+
+  // All Category
+  const allResult = await graphql(
     `
       {
         allMdx(
@@ -46,23 +50,72 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     `,
   );
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`);
+  if (allResult.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query. : [ allMdx ]`);
     return;
   }
-  const posts = result.data.allMdx.edges;
-  const postsPerPage = 2;
-  const numPages = Math.ceil(posts.length / postsPerPage);
-  Array.from({ length: numPages }).forEach((_, i) => {
+  const allPosts = allResult.data.allMdx.edges;
+  const allNumPages = Math.ceil(allPosts.length / postsPerPage);
+  Array.from({ length: allNumPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
       component: path.resolve('./src/templates/PostListTemplate.tsx'),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
-        numPages,
+        numPages: allNumPages,
         currentPage: i + 1,
       },
+    });
+  });
+
+  // Each Category
+  const result = await graphql(
+    `
+      {
+        categoryList: allMdx(limit: 100) {
+          group(field: frontmatter___category) {
+            fieldValue
+            totalCount
+            nodes {
+              frontmatter {
+                title
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `Error while running GraphQL query. : [ categoryList ]`,
+    );
+    return;
+  }
+  const categories = result.data.categoryList.group;
+
+  const getCategoryURL = fieldValue => {
+    return fieldValue.toLowerCase().replace(/[\s;]+/g, '-');
+  };
+
+  categories.forEach(category => {
+    const numPages = Math.ceil(category.totalCount / postsPerPage);
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path:
+          i === 0
+            ? `/blog/${getCategoryURL(category.fieldValue)}`
+            : `/blog/${getCategoryURL(category.fieldValue)}/${i + 1}`,
+        component: path.resolve('./src/templates/PostListTemplate.tsx'),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+          category: category.fieldValue,
+        },
+      });
     });
   });
 };
