@@ -1,4 +1,4 @@
-interface IPaginstion {
+interface IPagination {
   currentPage: number;
   limit: number;
   numPages: number;

@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 import path from 'path';
 import { createFilePath } from 'gatsby-source-filesystem';
+import { toKebabCase } from './src/utils/caseStyles';
 
 // Setup Import Alias
 exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
@@ -20,6 +21,7 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
         graphql: path.resolve(__dirname, 'src/graphql'),
         templates: path.resolve(__dirname, 'src/templates'),
         styles: path.resolve(__dirname, 'src/styles'),
+        utils: path.resolve(__dirname, 'src/utils'),
       },
     },
   });
@@ -95,18 +97,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
   const categories = result.data.categoryList.group;
 
-  const getCategoryURL = fieldValue => {
-    return fieldValue.toLowerCase().replace(/[\s;]+/g, '-');
-  };
-
   categories.forEach(category => {
     const numPages = Math.ceil(category.totalCount / postsPerPage);
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
         path:
           i === 0
-            ? `/blog/${getCategoryURL(category.fieldValue)}`
-            : `/blog/${getCategoryURL(category.fieldValue)}/${i + 1}`,
+            ? `/blog/${toKebabCase(category.fieldValue)}`
+            : `/blog/${toKebabCase(category.fieldValue)}/${i + 1}`,
         component: path.resolve('./src/templates/PostListTemplate.tsx'),
         context: {
           limit: postsPerPage,
