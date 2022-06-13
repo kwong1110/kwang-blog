@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 type CategoryListProps = {
   categoryList: {
     group: ICategory[];
+    totalCount: number;
   };
 };
 
@@ -15,9 +16,10 @@ export const useCategoryList = () => {
             fieldValue
             totalCount
           }
+          totalCount
         }
       }
     `,
   );
-  return categoryList.group;
+  return categoryList;
 };

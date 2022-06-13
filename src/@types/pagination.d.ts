@@ -3,4 +3,6 @@ interface IPagination {
   limit: number;
   numPages: number;
   skip: number;
+  category: string;
+  pagePath: string;
 }

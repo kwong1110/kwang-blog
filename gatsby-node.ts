@@ -58,15 +58,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
   const allPosts = allResult.data.allMdx.edges;
   const allNumPages = Math.ceil(allPosts.length / postsPerPage);
+  const allPostsPagePath = '/blog';
+
   Array.from({ length: allNumPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      path: i === 0 ? allPostsPagePath : `${allPostsPagePath}/${i + 1}`,
       component: path.resolve('./src/templates/PostListTemplate.tsx'),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
         numPages: allNumPages,
         currentPage: i + 1,
+        pagePath: allPostsPagePath,
       },
     });
   });
@@ -99,12 +102,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   categories.forEach(category => {
     const numPages = Math.ceil(category.totalCount / postsPerPage);
+    const categoryPostsPagePath = `/blog/${toKebabCase(category.fieldValue)}`;
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
         path:
-          i === 0
-            ? `/blog/${toKebabCase(category.fieldValue)}`
-            : `/blog/${toKebabCase(category.fieldValue)}/${i + 1}`,
+          i === 0 ? categoryPostsPagePath : `${categoryPostsPagePath}/${i + 1}`,
         component: path.resolve('./src/templates/PostListTemplate.tsx'),
         context: {
           limit: postsPerPage,
@@ -112,6 +114,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           numPages,
           currentPage: i + 1,
           category: category.fieldValue,
+          pagePath: categoryPostsPagePath,
         },
       });
     });

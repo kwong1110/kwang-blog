@@ -1,22 +1,23 @@
 import { Link, navigate } from 'gatsby';
 
-type PaginationProps = IPaginstion;
+type PaginationProps = IPagination;
 
 const pageRange = 5;
-
-const goPageLink = (pageNum: number) => {
-  if (pageNum !== 1) {
-    return `/blog/${pageNum}`;
-  }
-  return '/blog';
-};
 
 const Pagination = ({
   currentPage,
   numPages,
   skip,
   limit,
+  pagePath,
 }: PaginationProps) => {
+  const goPageLink = (pageNum: number) => {
+    if (pageNum !== 1) {
+      return `${pagePath}/${pageNum}`;
+    }
+    return `${pagePath}`;
+  };
+
   const skipPages = Math.floor(skip / limit / pageRange) * pageRange;
   const viewPageRange =
     numPages < skipPages + pageRange ? numPages % pageRange : pageRange;

@@ -1,23 +1,24 @@
 import CategoryList from 'components/blog/CategoryList';
 import Pagination from 'components/blog/pagination/Pagination';
-import { graphql } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 
 type PostListTemplateProps = {
-  data: {
-    allMdx: {
-      edges: {
-        node: { frontmatter: IFrontMatter };
-      }[];
-    };
+  allMdx: {
+    edges: {
+      node: { frontmatter: IFrontMatter };
+    }[];
   };
-  pageContext: IPaginstion;
 };
 
-const PostListTemplate = ({ data, pageContext }: PostListTemplateProps) => {
+const PostListTemplate = ({
+  data,
+  pageContext,
+}: PageProps<PostListTemplateProps, IPagination>) => {
   const posts = data.allMdx.edges;
+
   return (
     <div>
-      <CategoryList />
+      <CategoryList pagePath={pageContext.pagePath} />
       <div>
         {posts.map((post, key) => (
           <div key={key}>
@@ -34,8 +35,9 @@ const PostListTemplate = ({ data, pageContext }: PostListTemplateProps) => {
 };
 
 export const postListQuery = graphql`
-  query blogListQuery($skip: Int!, $limit: Int!) {
+  query blogListQuery($skip: Int!, $limit: Int!, $category: String) {
     allMdx(
+      filter: { frontmatter: { category: { eq: $category } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
