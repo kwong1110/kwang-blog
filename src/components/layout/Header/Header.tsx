@@ -10,8 +10,12 @@ const Header = () => {
       <Link to="/">
         <GatsbyImage style={{ width: '90px' }} image={logo} alt="logo" />
       </Link>
-      <Link to="/about">about</Link>
-      <Link to="/blog">blog</Link>
+      <Link to="/about" partiallyActive activeStyle={{ background: 'orange' }}>
+        about
+      </Link>
+      <Link to="/blog" partiallyActive activeStyle={{ background: 'orange' }}>
+        blog
+      </Link>
     </div>
   );
 };
