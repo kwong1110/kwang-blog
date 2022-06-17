@@ -1,11 +1,12 @@
 import CategoryList from 'components/blog/CategoryList';
 import Pagination from 'components/blog/pagination/Pagination';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, navigate, PageProps } from 'gatsby';
+import { toKebabCase } from 'utils/caseStyles';
 
 type PostListTemplateProps = {
   allMdx: {
     edges: {
-      node: { frontmatter: IFrontMatter };
+      node: { frontmatter: IFrontMatter; slug: string };
     }[];
   };
 };
@@ -20,14 +21,23 @@ const PostListTemplate = ({
     <div>
       <CategoryList pagePath={pageContext.pagePath} />
       <div>
-        {posts.map((post, key) => (
-          <div key={key}>
-            <span>{post.node.frontmatter.category}</span>
-            <span>{post.node.frontmatter.title}</span>
-            <span>{post.node.frontmatter.date}</span>
-            <span>{post.node.frontmatter.summary}</span>
-          </div>
-        ))}
+        {posts.map((post, key) => {
+          const { slug, frontmatter } = post.node;
+          const { category, title, date, summary } = frontmatter;
+
+          return (
+            <div
+              key={key}
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate(`/blog/${toKebabCase(category)}/${slug}`)}
+            >
+              <span>{category}</span>
+              <span>{title}</span>
+              <span>{date}</span>
+              <span>{summary}</span>
+            </div>
+          );
+        })}
       </div>
       <Pagination {...pageContext} />
     </div>
@@ -35,7 +45,7 @@ const PostListTemplate = ({
 };
 
 export const postListQuery = graphql`
-  query blogListQuery($skip: Int!, $limit: Int!, $category: String) {
+  query postListQuery($skip: Int!, $limit: Int!, $category: String) {
     allMdx(
       filter: { frontmatter: { category: { eq: $category } } }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -51,6 +61,7 @@ export const postListQuery = graphql`
             thumbnail
             title
           }
+          slug
         }
       }
     }
