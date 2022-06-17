@@ -5,6 +5,9 @@ const config: GatsbyConfig = {
     title: `KWANG Blog`,
     siteUrl: `https://www.yourdomain.tld`,
   },
+  flags: {
+    PARALLEL_QUERY_RUNNING: true,
+  },
   plugins: [
     {
       resolve: 'gatsby-plugin-typescript',
