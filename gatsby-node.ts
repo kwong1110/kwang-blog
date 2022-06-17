@@ -86,6 +86,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               frontmatter {
                 title
               }
+              slug
             }
           }
         }
@@ -119,11 +120,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       });
     });
   });
+
+  categories.forEach(category => {
+    const categoryPostsPagePath = `/blog/${toKebabCase(category.fieldValue)}`;
+    category.nodes.forEach(({ slug }) => {
+      createPage({
+        path: `${categoryPostsPagePath}/${slug}`,
+        component: path.resolve('./src/templates/PostItemTemplate.tsx'),
+        context: {
+          slug,
+        },
+      });
+    });
+  });
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
