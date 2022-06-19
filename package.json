@@ -20,6 +20,7 @@
     "@emotion/styled": "^11.8.1",
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
+    "@types/react-helmet": "^6.1.5",
     "gatsby": "^4.12.1",
     "gatsby-plugin-emotion": "^7.12.1",
     "gatsby-plugin-image": "^2.12.1",

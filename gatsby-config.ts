@@ -2,8 +2,10 @@ import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `KWANG Blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: 'Kwang Blog',
+    author: 'Kwang',
+    description: '프론트엔드, 다양한 시각적 콘텐츠 기록 블로그 입니다.',
+    siteUrl: 'https://kwangblogmain.gatsbyjs.io',
   },
   flags: {
     PARALLEL_QUERY_RUNNING: true,
