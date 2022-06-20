@@ -12,7 +12,7 @@ const SEO = ({ title, description, type, image, url, keywords }: SEOProps) => {
   const { siteMetadata, publicURL } = useSiteMetaData();
 
   const metadata = {
-    title: title || siteMetadata.title,
+    title: title ? `${title} - ${siteMetadata.title}` : siteMetadata.title,
     description: description || siteMetadata.description,
     image: image || publicURL,
     type: type || 'website',

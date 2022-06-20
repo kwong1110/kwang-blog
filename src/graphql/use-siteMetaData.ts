@@ -24,7 +24,7 @@ export const useSiteMetaData = () => {
             author
           }
         }
-        file(name: { eq: "logo" }) {
+        file(name: { eq: "logo-thumbnail" }) {
           publicURL
         }
       }

@@ -4,7 +4,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Kwang Blog',
     author: 'Kwang',
-    description: '프론트엔드, 다양한 시각적 콘텐츠 기록 블로그 입니다.',
+    description: '프론트엔드, 시각적콘텐츠 기록 블로그.',
     siteUrl: 'https://kwangblogmain.gatsbyjs.io',
   },
   flags: {
