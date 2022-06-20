@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 const IndexPage = () => {
   return (
     <Fragment>
-      <SEO title="Kwang blog" />
+      <SEO />
       <div>index입니다.</div>
     </Fragment>
   );
