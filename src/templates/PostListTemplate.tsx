@@ -1,6 +1,8 @@
 import CategoryList from 'components/blog/CategoryList';
 import Pagination from 'components/blog/pagination/Pagination';
+import SEO from 'components/common/SEO';
 import { graphql, navigate, PageProps } from 'gatsby';
+import { Fragment } from 'react';
 import { toKebabCase } from 'utils/caseStyles';
 
 type PostListTemplateProps = {
@@ -18,29 +20,34 @@ const PostListTemplate = ({
   const posts = data.allMdx.edges;
 
   return (
-    <div>
-      <CategoryList pagePath={pageContext.pagePath} />
+    <Fragment>
+      <SEO title="blog" />
       <div>
-        {posts.map((post, key) => {
-          const { slug, frontmatter } = post.node;
-          const { category, title, date, summary } = frontmatter;
+        <CategoryList pagePath={pageContext.pagePath} />
+        <div>
+          {posts.map((post, key) => {
+            const { slug, frontmatter } = post.node;
+            const { category, title, date, summary } = frontmatter;
 
-          return (
-            <div
-              key={key}
-              style={{ cursor: 'pointer' }}
-              onClick={() => navigate(`/blog/${toKebabCase(category)}/${slug}`)}
-            >
-              <span>{category}</span>
-              <span>{title}</span>
-              <span>{date}</span>
-              <span>{summary}</span>
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={key}
+                style={{ cursor: 'pointer' }}
+                onClick={() =>
+                  navigate(`/blog/${toKebabCase(category)}/${slug}`)
+                }
+              >
+                <span>{category}</span>
+                <span>{title}</span>
+                <span>{date}</span>
+                <span>{summary}</span>
+              </div>
+            );
+          })}
+        </div>
+        <Pagination {...pageContext} />
       </div>
-      <Pagination {...pageContext} />
-    </div>
+    </Fragment>
   );
 };
 

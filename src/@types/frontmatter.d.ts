@@ -4,4 +4,5 @@ interface IFrontMatter {
   category: string;
   summary: string;
   thumbnail: string;
+  tag: string[];
 }

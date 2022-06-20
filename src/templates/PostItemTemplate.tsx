@@ -1,5 +1,7 @@
+import SEO from 'components/common/SEO';
 import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Fragment } from 'react';
 
 type PostItemTemplateProps = {
   mdx: {
@@ -17,11 +19,19 @@ const PostItemTemplate = ({
   const { body, timeToRead, frontmatter } = data.mdx;
 
   return (
-    <div>
-      <div>제목 : {frontmatter.title}</div>
-      <div>조회수 : {timeToRead}</div>
-      <MDXRenderer>{body}</MDXRenderer>
-    </div>
+    <Fragment>
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.summary}
+        image={frontmatter.thumbnail}
+        keywords={frontmatter.tag.join(', ')}
+      />
+      <div>
+        <div>제목 : {frontmatter.title}</div>
+        <div>조회수 : {timeToRead}</div>
+        <MDXRenderer>{body}</MDXRenderer>
+      </div>
+    </Fragment>
   );
 };
 
@@ -37,6 +47,7 @@ export const postItemQuery = graphql`
         summary
         thumbnail
         title
+        tag
       }
     }
   }
