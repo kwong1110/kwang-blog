@@ -1,60 +1,45 @@
+import { css } from '@emotion/react';
 import { Link } from 'gatsby';
-import styled from '@emotion/styled';
-
-// styles
-const pageStyles = {
-  color: '#232129',
-  padding: '96px',
-  fontFamily: '-apple-system, Roboto, sans-serif, serif',
-};
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-
-const paragraphStyles = {
-  marginBottom: 48,
-};
-const codeStyles = {
-  color: '#8A6534',
-  padding: 4,
-  backgroundColor: '#FFF4DB',
-  fontSize: '1.25rem',
-  borderRadius: 4,
-};
-
-const GoMain = styled(Link)`
-  font-size: 2rem;
-  font-weight: 700;
-  color: red;
-`;
 
 // markup
 const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{' '}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{' '}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === 'development' ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <GoMain to="/">Go home</GoMain>
-      </p>
-    </main>
+    <div css={notFoundPageBox}>
+      <div className="not-found">404</div>
+      <div className="not-found-title">찾을 수 없는 페이지입니다.</div>
+      <div>입력하신 주소를 다시 한 번 확인해 주시기 바랍니다.</div>
+      <div className="bottom-box">
+        <Link to="/">메인으로</Link>
+      </div>
+    </div>
   );
 };
+
+const notFoundPageBox = css`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  color: #828282;
+
+  .not-found {
+    font-size: 50px;
+    color: #ddd;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .not-found-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #535353;
+  }
+
+  .bottom-box {
+    margin-top: 20px;
+  }
+`;
 
 export default NotFoundPage;
