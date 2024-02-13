@@ -1,7 +1,6 @@
 import SEO from 'components/common/SEO';
 import { graphql, PageProps } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 
 type PostItemTemplateProps = {
   mdx: {
@@ -39,7 +38,7 @@ const PostItemTemplate = ({
   }, []);
 
   return (
-    <Fragment>
+    <>
       <SEO
         title={frontmatter.title}
         description={frontmatter.summary}
@@ -49,10 +48,10 @@ const PostItemTemplate = ({
       <div>
         <div>제목 : {frontmatter.title}</div>
         <div>조회수 : {timeToRead}</div>
-        <MDXRenderer>{body}</MDXRenderer>
+        {body}
       </div>
       <div id={COMMENTS_ID} />
-    </Fragment>
+    </>
   );
 };
 

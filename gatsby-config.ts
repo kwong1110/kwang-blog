@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-image',
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet-async',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
