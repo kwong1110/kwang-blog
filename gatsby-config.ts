@@ -1,5 +1,9 @@
 import type { GatsbyConfig } from 'gatsby';
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'Kwang Blog',
@@ -25,6 +29,27 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         icon: 'src/images/favicon.png',
+      },
+    },
+    {
+      resolve: 'gatsby-source-notion-feely',
+      options: {
+        token: process.env.NOTION_TOKEN,
+        databases: [
+          {
+            id: process.env.NOTION_DB_ID,
+            name: 'kwangspace',
+            pageFilter: {
+              property: 'is_published',
+              checkbox: {
+                equals: true,
+              },
+            },
+            option: {
+              isIncludeChildren: true,
+            },
+          },
+        ],
       },
     },
     {
@@ -101,7 +126,6 @@ const config: GatsbyConfig = {
       },
       __key: 'contents',
     },
-    'gatsby-plugin-mdx',
   ],
 };
 

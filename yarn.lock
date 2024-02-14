@@ -7215,6 +7215,14 @@ gatsby-source-filesystem@^5.13.1:
     valid-url "^1.0.9"
     xstate "^4.38.0"
 
+gatsby-source-notion-feely@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/gatsby-source-notion-feely/-/gatsby-source-notion-feely-2.1.1.tgz#0c6311708d074b6219ac228a9fa062408a2c421f"
+  integrity sha512-y6An2Uz0rJBqngugvvqAFZmobOu2gy67Cw+FcrCpdutUe4Y2Ww0/SOunwaMKXFN9QGniNB5llMuk6YINNhYNgg==
+  dependencies:
+    node-fetch "^2.6.1"
+    or-pipets "^1.0.1"
+
 gatsby-telemetry@^4.13.1:
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-4.13.1.tgz#f0f80b1fb71116085931b8c6b8f48efdbeb561bc"
@@ -10822,7 +10830,7 @@ node-fetch@2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-fetch@^2.6.11:
+node-fetch@^2.6.1, node-fetch@^2.6.11:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
   integrity sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==
@@ -11113,6 +11121,11 @@ optionator@^0.9.1:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
     word-wrap "^1.2.3"
+
+or-pipets@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/or-pipets/-/or-pipets-1.0.1.tgz#0699c99f95a535614a585cd7fb3a1a216a47b5c0"
+  integrity sha512-xgIIdB4w00pbhtNPYLF/caifwbc4KrE7jy4WqiDRzRrC2g3YVR4ypRwbKRA/bXzftQEA2SK8c+wKI2R7kqKiLQ==
 
 ordered-binary@^1.2.4:
   version "1.2.5"
@@ -14149,9 +14162,9 @@ unist-util-stringify-position@^2.0.0:
     "@types/unist" "^2.0.2"
 
 unist-util-stringify-position@^3.0.0:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/unist-util-stringify-position/-/unist-util-stringify-position-3.0.2.tgz#5c6aa07c90b1deffd9153be170dce628a869a447"
-  integrity sha512-7A6eiDCs9UtjcwZOcCpM4aPII3bAAGv13E96IkawkOAW0OhH+yRxtY0lzo8KiHpzEMfH7Q+FizUmwp8Iqy5EWg==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/unist-util-stringify-position/-/unist-util-stringify-position-3.0.3.tgz#03ad3348210c2d930772d64b489580c13a7db39d"
+  integrity sha512-k5GzIBZ/QatR8N5X2y+drfpWG8IDBzdnVj6OInRNWm1oXrzydiaAT2OQiA8DPRRZyAKb9b6I2a6PxYklZD0gKg==
   dependencies:
     "@types/unist" "^2.0.0"
 
